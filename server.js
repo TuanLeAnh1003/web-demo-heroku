@@ -70,6 +70,11 @@ app.get('/', (req, res, next) => {
   res.sendFile(linkFile);
 })
 
+// Cart
+app.get('/cart', (req, res, next) => {
+  res.json('Cart page')
+})
+
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })

@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 5000
+const path = require('path')
 var bodyParser = require('body-parser')
 const UserModel = require('./models/user')
 
@@ -39,7 +40,7 @@ app.post('/register', (req, res, next) => {
 app.post('/login', (req, res, next) => {
   var username = req.body.username
   var password = req.body.password
-
+  
   UserModel.findOne({
     username: username,
     password: password
@@ -62,8 +63,11 @@ var userRouter = require('./routers/user')
 app.use('/api/user/', userRouter)
 
 // Home
+app.use('/public', express.static(path.join(__dirname, '/public')))
+
 app.get('/', (req, res, next) => {
-  res.json("home")
+  var linkFile = path.join(__dirname, 'home.html')
+  res.sendFile(linkFile);
 })
 
 app.listen(port, () => {

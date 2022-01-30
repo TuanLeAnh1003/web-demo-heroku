@@ -70,6 +70,6 @@ app.get('/', (req, res, next) => {
   res.sendFile(linkFile);
 })
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
